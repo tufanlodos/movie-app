@@ -38,25 +38,29 @@ export class AuthService {
   async register(email: string, password: string, age: number, role: Role) {
     const user = await this.getUserByEmail(email);
     if (user) {
-      throw new BadRequestException();
+      throw new BadRequestException('User already exists');
     }
-    const newUser = await this.user.create({ email, password, age, role });
-    newUser.password = await this.hashPassword(password);
-    await newUser.save();
-    return this.generateToken(newUser);
+    try {
+      const newUser = await this.user.create({ email, password, age, role });
+      newUser.password = await this.hashPassword(password);
+      await newUser.save();
+      return this.generateToken(newUser);
+    } catch (error) {
+      return new BadRequestException(error);
+    }
   }
 
   async login(email: string, password: string) {
     const user = await this.getUserByEmail(email);
     if (!user) {
-      throw new BadRequestException();
+      throw new BadRequestException("User doesn't exist");
     }
     const isPasswordCorrect = await this.comparePassword(
       password,
       user.password,
     );
     if (!isPasswordCorrect) {
-      throw new BadRequestException();
+      throw new BadRequestException('Password is incorrect');
     }
 
     return this.generateToken(user);
