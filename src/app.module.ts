@@ -1,11 +1,18 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
-import { MoviesModule } from './movies/movies.module';
+import { AuthModule } from './auth';
+import { MoviesModule } from './movies';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [UsersModule, MoviesModule],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    MongooseModule.forRoot(process.env.MONGO_URL),
+    AuthModule,
+    MoviesModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
