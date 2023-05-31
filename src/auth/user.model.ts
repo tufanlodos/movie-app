@@ -36,7 +36,6 @@ export const UserSchema = new mongoose.Schema(
         values: Object.values(Role),
         message: '{VALUE} is not supported for the role',
       },
-      required: true,
       default: Role.Customer,
     },
   },

@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { Role, USER_MODEL_NAME, User } from './user.model';
+import { USER_MODEL_NAME, User } from './user.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
@@ -35,7 +35,7 @@ export class AuthService {
     return this.jwtService.signAsync(payload);
   }
 
-  async register(email: string, password: string, age: number, role: Role) {
+  async register(email: string, password: string, age: number, role: string) {
     const user = await this.getUserByEmail(email);
     if (user) {
       throw new BadRequestException('User already exists');
