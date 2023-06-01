@@ -5,6 +5,8 @@ import { AuthModule } from './auth';
 import { MovieModule } from './movie';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
+import { CoreModule } from './core/core.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -12,6 +14,8 @@ import { ConfigModule } from '@nestjs/config';
     MongooseModule.forRoot(process.env.MONGO_URL),
     AuthModule,
     MovieModule,
+    CoreModule,
+    CommonModule,
   ],
   controllers: [AppController],
   providers: [AppService],

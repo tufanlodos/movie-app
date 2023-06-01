@@ -8,9 +8,10 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { AuthGuard, Role, RoleGuard } from 'src/auth';
+import { AuthGuard, RoleGuard } from 'src/common';
 import { MovieService } from './movie.service';
 import { AddMovieDto, DeleteMovieDto, UpdateMovieDto } from './movie.dto';
+import { Role } from 'src/common';
 
 @Controller('movie')
 @UseGuards(AuthGuard)

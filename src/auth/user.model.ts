@@ -1,9 +1,5 @@
 import * as mongoose from 'mongoose';
-
-export enum Role {
-  Manager = 'Manager',
-  Customer = 'Customer',
-}
+import { Role } from 'src/common';
 
 export const USER_MODEL_NAME = 'User';
 
