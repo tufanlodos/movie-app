@@ -26,6 +26,15 @@ export class MovieService {
     };
   }
 
+  async getMovie(id: string) {
+    try {
+      const movie = await this.movie.findById(id);
+      return this.normalizeMovie(movie);
+    } catch (error) {
+      throw new BadRequestException('Could not find movie.');
+    }
+  }
+
   async getMovies() {
     const movies = await this.movie.find();
     return movies.map((movie) => this.normalizeMovie(movie));

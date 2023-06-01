@@ -14,5 +14,6 @@ import { SESSION_MODEL_NAME, SessionSchema } from './session.model';
   ],
   providers: [MovieService],
   controllers: [MovieController],
+  exports: [MovieService],
 })
 export class MovieModule {}

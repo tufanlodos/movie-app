@@ -7,6 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { CoreModule } from './core/core.module';
 import { CommonModule } from './common/common.module';
+import { TicketModule } from './ticket/ticket.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { CommonModule } from './common/common.module';
     MovieModule,
     CoreModule,
     CommonModule,
+    TicketModule,
   ],
   controllers: [AppController],
   providers: [AppService],

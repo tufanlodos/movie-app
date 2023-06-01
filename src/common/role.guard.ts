@@ -1,4 +1,5 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { TokenPayload } from './token-payload.type';
 
 @Injectable()
 export class RoleGuard implements CanActivate {
@@ -7,6 +8,6 @@ export class RoleGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest();
     const { user } = request;
-    return user.role === this.role;
+    return (user as TokenPayload).role === this.role;
   }
 }

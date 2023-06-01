@@ -1,5 +1,6 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { TokenPayload } from './token-payload.type';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -14,7 +15,7 @@ export class AuthGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     if (request.headers.authorization) {
       try {
-        const payload = this.jwtService.verify(
+        const payload = this.jwtService.verify<TokenPayload>(
           this.extractToken(request.headers.authorization),
         );
 

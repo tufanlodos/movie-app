@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto, RegisterDto } from './auth.dto';
+import { TokenPayload } from 'src/common';
 
 @Injectable()
 export class AuthService {
@@ -27,8 +28,8 @@ export class AuthService {
   }
 
   private async generateToken(user: User) {
-    const payload = {
-      id: user.id,
+    const payload: TokenPayload = {
+      userId: user.id,
       email: user.email,
       role: user.role,
       age: user.age,
