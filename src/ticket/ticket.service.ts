@@ -32,7 +32,21 @@ export class TicketService {
       const ticket = await this.ticket.findById(id);
       return this.normalizeTicket(ticket);
     } catch (error) {
-      throw new BadRequestException('Could not find movie.');
+      throw new BadRequestException('Could not find ticket.');
+    }
+  }
+
+  async validateTicket(userId: string, movieId: string, sessionId: string) {
+    try {
+      const ticket = await this.ticket.findOne({
+        userId,
+        movieId,
+        sessionId,
+      });
+      if (!ticket) return undefined;
+      return ticket;
+    } catch (error) {
+      throw new BadRequestException('Could not validate ticket.');
     }
   }
 

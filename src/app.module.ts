@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { CoreModule } from './core/core.module';
 import { CommonModule } from './common/common.module';
 import { TicketModule } from './ticket/ticket.module';
+import { WatchModule } from './watch/watch.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { TicketModule } from './ticket/ticket.module';
     CoreModule,
     CommonModule,
     TicketModule,
+    WatchModule,
   ],
   controllers: [AppController],
   providers: [AppService],

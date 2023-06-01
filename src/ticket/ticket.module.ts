@@ -14,5 +14,6 @@ import { TICKET_MODEL_NAME, TicketSchema } from './ticket.model';
   ],
   controllers: [TicketController],
   providers: [TicketService],
+  exports: [TicketService],
 })
 export class TicketModule {}
